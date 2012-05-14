@@ -6,6 +6,8 @@ import javax.persistence.*;
 import play.db.jpa.*;
 
 @Entity
+@NamedNativeQuery(name = "findPosts", query = "select p.*,u.* from post p, user u" +
+		" where p.author_id=u.id order by p.postedAt desc", resultClass = Post.class)
 public class Post extends Model {
 
 	public String title;
@@ -33,5 +35,9 @@ public class Post extends Model {
 		this.comments.add(newComment);
 		this.save();
 		return this;
+	}
+
+	public static List<Post> findPosts(){
+		return em().createNamedQuery("findPosts").getResultList();
 	}
 }
