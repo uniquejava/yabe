@@ -4,3 +4,9 @@
 /test-result
 /logs
 /eclipse
+
+*.class
+# Package Files #
+*.jar
+*.war
+*.ear
