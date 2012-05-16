@@ -34,8 +34,8 @@ public class Application extends Controller {
     }
     
     public static void postComment(Long postId, 
-    		/*@Required(message="Author is required")*/ String author,
-    		/*@Required(message="A message is required")*/ String content,
+    		@Required(message="Author is required") String author,
+    		@Required(message="A message is required") String content,
     		@Required(message="Please type the code") String code,
     		String randomID){
     	Post post = Post.findById(postId);
@@ -46,8 +46,6 @@ public class Application extends Controller {
         }
     	
     	post.addComment(author, content);
-    	
-    	
     	flash.success("Thanks for posting %s", author);
     	Cache.delete(randomID); 
     	show(postId);
